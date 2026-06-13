@@ -4,11 +4,11 @@ import tseslint from "typescript-eslint";
 export default [
   {
     ignores: [
-      "node_modules/**",
-      "dist/**",
-      "build/**",
-      ".next/**",
-      "coverage/**",
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/.next/**",
+      "**/coverage/**",
       "ios/**/DerivedData/**",
       "android/**/.gradle/**"
     ]

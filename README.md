@@ -325,6 +325,16 @@ infra/
   docker/
 ```
 
+## Frontend Prototype
+
+A frontend-only mobile design prototype lives in `apps/mobile-prototype`. It is a Vite/React skeleton for exploring the ScanMyFlight interface before native Android and iPhone implementation.
+
+Run it locally:
+
+```sh
+npm run dev:mobile
+```
+
 ## Immediate Next Steps
 
 1. Confirm whether Android and iPhone should be fully native or whether a shared framework like Flutter/React Native is acceptable.

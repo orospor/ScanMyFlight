@@ -11,6 +11,8 @@
   ],
   "scripts": {
     "check": "npm run typecheck && npm run lint",
+    "dev:mobile": "npm run dev -w @scanmyflight/mobile-prototype",
+    "build:mobile": "npm run build -w @scanmyflight/mobile-prototype",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
@@ -20,6 +22,9 @@
   "engines": {
     "node": ">=24",
     "npm": ">=11"
+  },
+  "overrides": {
+    "esbuild": "^0.28.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
