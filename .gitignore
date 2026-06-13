@@ -1,0 +1,42 @@
+# macOS
+.DS_Store
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Node / web
+node_modules/
+dist/
+build/
+.next/
+coverage/
+
+# Android
+.gradle/
+local.properties
+*.apk
+*.aab
+
+# iOS
+DerivedData/
+*.xcuserstate
+*.xcworkspace/xcuserdata/
+*.xcodeproj/xcuserdata/
+Pods/
+
+# IDE
+.idea/
+.vscode/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
