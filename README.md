@@ -17,6 +17,8 @@ The initial discovery used these public sources:
 - TBO Hotel Booking: https://api.tbotechnology.in/AIS_Hotelbook.aspx
 - TBO certification process: https://api.tbotechnology.in/AIS_Going-live-certification.aspx
 - TBO Flight XML/API overview: https://www.travelboutiqueonline.com/flight_api.aspx
+- HDFC SmartGateway developer docs: https://smartgateway.hdfcbank.com/docs/
+- HDFC SmartGateway product page: https://www.hdfc.bank.in/msme-banking/payment-gateway
 - MakeMyTrip web/app feature references: https://www.makemytrip.com, https://play.google.com/store/apps/details?id=com.makemytrip, https://apps.apple.com/app/makemytrip-flight-hotel-bus/id530488359
 - myBiz corporate travel references: https://mybiz.makemytrip.com
 
@@ -140,11 +142,35 @@ Shared conventions:
 
 ### Payments And Finance
 
-- Payment gateway: Razorpay, Cashfree, PayU, Stripe, or Adyen depending on target markets.
+- Payment gateway: HDFC Bank SmartGateway.
+- HDFC integration mode: use SmartGateway checkout SDK/API from the backend, with mobile apps receiving only backend-created payment session payloads, payment links, or checkout instructions.
+- Supported payment methods to plan for: domestic and international cards, UPI, net banking, wallets, card EMI, cardless EMI, BNPL, payment links, and payment forms.
+- Authentication/integration options to confirm during onboarding: SmartGateway SDK integration, API reference with JWT encryption, API reference with basic authentication, integration kit with basic auth, and Tranportal integration.
+- Payment session creation: backend creates the ScanMyFlight order, creates the HDFC SmartGateway session/order server-to-server, stores the gateway order ID, and returns the approved checkout payload/link to Android or iOS.
+- Payment status confirmation: never trust only the mobile redirect result. Confirm success/failure through HDFC Order Status API and payment webhooks before issuing tickets, hotel vouchers, invoices, or supplier confirmations.
+- Webhooks: expose a signed, idempotent backend webhook endpoint for SmartGateway payment events; verify authenticity, persist raw payloads, and enqueue booking continuation or refund workflows.
+- Refunds: use HDFC refund APIs for cancellations, failed bookings after payment success, partial cancellations, and support-led refunds. Track refund request, queued/submitted state, bank/gateway reference, expected settlement date, and final status.
+- Reconciliation: import/download HDFC settlement and transaction reports into the finance dashboard, match them against internal payments/refunds/bookings, and flag mismatches.
+- Payment retries: support retrying failed transactions against the same booking hold where supplier rules allow it, while preventing duplicate ticketing or duplicate hotel booking.
+- Offers and affordability: design checkout to support HDFC SmartGateway offer engine, EMI, no-cost EMI, BNPL, dynamic currency conversion, and payment-method-specific discounts.
 - Wallet/credits ledger with double-entry accounting principles.
 - Refund tracking and reconciliation jobs.
 - GST invoice generation.
 - PCI-sensitive data should remain with payment providers; do not store raw card data.
+
+### HDFC SmartGateway Payment Flow
+
+1. Customer selects flight, hotel, package, bus, cab, or other product.
+2. Backend creates an internal booking hold or pending booking intent.
+3. Backend calculates payable amount, convenience fee, coupon, wallet deduction, taxes, and GST invoice metadata.
+4. Backend creates an HDFC SmartGateway payment session/order.
+5. Android or iPhone opens the HDFC checkout SDK/page using the backend-provided payload or payment link.
+6. Customer completes payment through card, UPI, net banking, wallet, EMI, BNPL, or another enabled method.
+7. HDFC redirects the customer to the app/web return URL and separately sends webhook events.
+8. Backend confirms final status using HDFC Order Status API and webhook data.
+9. Booking orchestrator proceeds with TBO booking/ticketing only after verified payment success.
+10. If supplier booking fails after payment success, backend starts an automatic refund workflow and alerts support.
+11. Finance reconciliation jobs compare HDFC settlements with internal ledger entries.
 
 ### Admin Web
 
@@ -226,7 +252,7 @@ flowchart LR
 
 ### Phase 0: Foundation
 
-- Finalize target markets, legal entity, TBO onboarding, payment gateway, and compliance needs.
+- Finalize target markets, legal entity, TBO onboarding, HDFC SmartGateway onboarding, and compliance needs.
 - Build design system and API conventions.
 - Create backend skeleton, Android skeleton, iOS skeleton, and admin skeleton.
 
@@ -267,7 +293,7 @@ flowchart LR
 - TBO partner agreement and API certification.
 - IRCTC/licensing requirements for train booking if booking is implemented.
 - Bus/cab supplier commercial agreements.
-- Payment gateway KYC and settlement setup.
+- HDFC SmartGateway merchant onboarding, KYC, MID setup, settlement account setup, sandbox access, production credentials, webhook configuration, and refund permissions.
 - GST invoice compliance.
 - Data privacy policy and consent management.
 - Secure storage for passports, visas, and identity documents if collected.
@@ -303,6 +329,6 @@ infra/
 
 1. Confirm whether Android and iPhone should be fully native or whether a shared framework like Flutter/React Native is acceptable.
 2. Obtain TBO sandbox credentials and full flight API documentation.
-3. Choose payment gateway and target launch country/currency.
+3. Complete HDFC SmartGateway merchant onboarding, sandbox access, webhook setup, and production credential plan.
 4. Scaffold backend, Android, iOS, and admin app folders.
 5. Build the hotel MVP first because TBO hotel documentation is publicly detailed and certification requirements are clearer.
