@@ -251,6 +251,8 @@ flowchart LR
 
 ## Delivery Plan
 
+See [Mobile App Development Phases](docs/product/mobile-app-development-phases.md) for the detailed Android and iPhone app build plan.
+
 ### Phase 0: Foundation
 
 - Finalize target markets, legal entity, TBO onboarding, HDFC SmartGateway onboarding, and compliance needs.
