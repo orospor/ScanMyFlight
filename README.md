@@ -113,6 +113,8 @@ Detailed flight method documentation must be obtained from TBO after partner onb
 
 ## Recommended Technology Stack
 
+See [REQUIREMENTS.md](REQUIREMENTS.md) for the installable dependency baseline, system tool checklist, and integration requirements.
+
 ### Mobile Apps
 
 We will build two native apps:

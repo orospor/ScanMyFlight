@@ -14,6 +14,7 @@ pnpm-debug.log*
 
 # Node / web
 node_modules/
+.npm-cache/
 dist/
 build/
 .next/
