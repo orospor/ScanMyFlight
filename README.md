@@ -1,6 +1,6 @@
 # ScanMyFlight
 
-ScanMyFlight is planned as a full-stack travel booking platform powered by TBO APIs. The product goal is to build a MakeMyTrip-class experience for flights, hotels, holidays, buses, trains, cabs, insurance, visas, payments, offers, support, and business travel, with separate native apps for Android and iPhone.
+ScanMyFlight is planned as a full-stack travel booking platform powered by TBO APIs. The product goal is to build a MakeMyTrip-class experience for flights, hotels, holidays, buses, cabs, insurance, visas, payments, offers, support, and business travel, with separate native apps for Android and iPhone.
 
 ## Vision
 
@@ -37,7 +37,6 @@ The initial discovery used these public sources:
 - Hotel booking with guest details, GST invoice details, coupon, wallet, payment, voucher, cancellation, amendment, and support.
 - Holiday packages with destination discovery, fixed packages, customizable packages, itinerary builder, flights plus hotels, transfers, activities, visa add-ons, and expert assistance.
 - Bus booking with source/destination, operator filters, seat map, boarding/dropping points, live tracking where available, cancellation, and ticket download.
-- Train booking discovery with PNR status, train running status, schedule, seat availability, fare, alternate trains, and IRCTC-compatible booking flow where licensing allows.
 - Cab booking for airport transfers, outstation, hourly rentals, city rides, trip tracking, driver details, and invoice.
 - Homestays, villas, apartments, resorts, hostels, guest houses, and service apartments.
 - Activities and sightseeing experiences.
@@ -279,7 +278,7 @@ flowchart LR
 
 ### Phase 4: MakeMyTrip-Parity Expansion
 
-- Holidays, buses, trains, cabs, insurance, visa, forex, activities, reviews, loyalty, price alerts, fare calendar, fare lock, corporate travel, admin finance, and advanced analytics.
+- Holidays, buses, cabs, insurance, visa, forex, activities, reviews, loyalty, price alerts, fare calendar, fare lock, corporate travel, admin finance, and advanced analytics.
 
 ### Phase 5: Scale And Certification
 
@@ -293,7 +292,6 @@ flowchart LR
 ## Compliance And Risk Checklist
 
 - TBO partner agreement and API certification.
-- IRCTC/licensing requirements for train booking if booking is implemented.
 - Bus/cab supplier commercial agreements.
 - HDFC SmartGateway merchant onboarding, KYC, MID setup, settlement account setup, sandbox access, production credentials, webhook configuration, and refund permissions.
 - GST invoice compliance.

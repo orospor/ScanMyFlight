@@ -3,7 +3,6 @@ export type BookingProduct =
   | "hotel"
   | "holiday"
   | "bus"
-  | "train"
   | "cab"
   | "insurance"
   | "visa"
