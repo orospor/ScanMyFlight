@@ -344,3 +344,7 @@ npm run dev:mobile
 3. Complete HDFC SmartGateway merchant onboarding, sandbox access, webhook setup, and production credential plan.
 4. Scaffold backend, Android, iOS, and admin app folders.
 5. Build the hotel MVP first because TBO hotel documentation is publicly detailed and certification requirements are clearer.
+
+## Orospor Labs
+
+More projects and updates: [Orospor](https://orospor.com).
